@@ -184,3 +184,82 @@ Length:
 ```
 
 The program finds the length of the longest increasing subsequence in the vector.
+
+
+**Que : So, can you tell me the difference between thread and process?**
+
+“A process is an independent running program with its own memory space and resources.
+A thread is a lightweight execution unit inside a process. Multiple threads can share the same memory space of the process.
+
+Processes are more isolated and safer, while threads are faster for communication but require synchronization because they share memory.”
+
+“In robotics, we often use multithreading for sensor processing, control loops, perception pipelines, or communication to improve responsiveness and parallelism.”
+
+
+
+**Que : Multiprocess computation has pros and cons, What is a thread safety in the multithreading program?** 
+
+“Thread safety means ensuring that multiple threads can access shared resources safely without causing data corruption or unexpected behavior.”
+
+“For example, if two threads modify the same variable simultaneously without synchronization, it can create race conditions. To avoid that, we use mechanisms like mutexes, locks, or atomic operations.”
+
+Simple robotics example:
+
+“For example, if one thread updates sensor data while another thread reads it for motion planning, we need synchronization to avoid inconsistent data.”
+
+
+**Que : Explain how to define the position of a body in the 3D world? What kind of data structures usually used for that?**
+
+Usually, the position of a body in 3D space is represented using translation and rotation.
+
+Translation is represented with a 3D vector (x,y,z), and orientation can be represented using rotation matrices, Euler angles, or quaternions.
+
+In robotics, we commonly use homogeneous transformation matrices, which are 4x4 matrices combining both rotation and translation.”
+For example:
+
+T = R * t 
+
+Where:
+
+R = 3x3 rotation matrix
+t = translation vector
+
+You could also mention:
+
+
+**Que : “Quaternions are often preferred over Euler angles because they avoid gimbal lock and are computationally efficient for interpolation and rotations.”**
+
+And then you can have seven values storage only. So translation is three plus four values of the quaternion. But do you know why it's not commonly used as just three angles? 
+ 
+Why do we need quaternion instead, like four values instead of three angles?
+  
+It's the problem called the gimbal lock, so-called problem, which is about, because for the rotations, if you just define the rotation.
+
+“Euler angles use three sequential rotations, but they can suffer from gimbal lock, where two rotational axes align and we lose one degree of freedom.
+
+Quaternions avoid this issue and provide smoother and more stable rotation representations, especially for interpolation and continuous 3D rotations.
+
+They are also computationally efficient and commonly used in robotics, ROS, SLAM, and motion planning.”
+
+
+
+**Important sorting algorithms commonly asked in C++ interviews:**
+
+
+| Algorithm        | Avg Time   | Worst Time | Stable | Notes                             |
+| ---------------- | ---------- | ---------- | ------ | --------------------------------- |
+| Bubble Sort      | O(n²)      | O(n²)      | Yes    | Simple, inefficient               |
+| Selection Sort   | O(n²)      | O(n²)      | No     | Minimal swaps                     |
+| Insertion Sort   | O(n²)      | O(n²)      | Yes    | Good for small/nearly sorted data |
+| Merge Sort       | O(n log n) | O(n log n) | Yes    | Extra memory needed               |
+| Quick Sort       | O(n log n) | O(n²)      | No     | Very fast in practice             |
+| Heap Sort        | O(n log n) | O(n log n) | No     | Good worst-case guarantee         |
+| std::sort        | O(n log n) | O(n log n) | No     | Introsort internally              |
+| std::stable_sort | O(n log n) | O(n log n) | Yes    | Preserves order                   |
+
+**Most important for interviews:**
+
+* Quick Sort
+* Merge Sort
+* Heap Sort
+* std::sort
